@@ -27,14 +27,14 @@ Before running the tests make sure you are serving the app via `ng serve`.
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-1.extension: angular2 typescript snippets:johnpapa
-2.npm install -g typescript@2.0
+1. extension: angular2 typescript snippets:johnpapa
+2. npm install -g typescript@2.0
 	Go to: C:\Program Files (x86)\Microsoft SDKs\TypeScript, there you see directories of type 0.9, 1.0 1.1.
 	Enter the high number that you have (in this case 1.1)
 	Copy the directory and run in CMD the command tsc -v, you get the version.
   
-3.npm install  
-  npm start
+3. npm install  
+   npm start
 
 4. git init
    git add .
@@ -43,12 +43,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 5. CTRL + SHIFT + B (build)
 
-6. ng github-pages:deploy
-	 # deploy for angular CLI 
-
-7. npm install -g @angular/cli
+6. npm install -g @angular/cli
    ng new my-app
    ng serve
    http://localhost:4200/
+
+7. npm i -g angular-cli-ghpages  (https://github.com/angular-buch/angular-cli-ghpages)
+  add to package.json scripts:
+  "predeploy": "ng build --prod",
+  "deploy": "ngh"
+  run: npm run deploy
 
 
