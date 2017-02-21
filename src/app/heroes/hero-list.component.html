@@ -1,0 +1,8 @@
+<div class="list-group">
+  <button type="button" *ngFor="let hero of heroes | async"
+    [class.selected]="isSelected(hero)"
+    (click)="onSelect(hero)"
+    class="list-group-item listItem">
+    <span class="badge-left">{{ hero.id }}</span> {{ hero.name }}
+  </button>
+</div>
