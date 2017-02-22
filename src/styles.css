@@ -6,10 +6,11 @@ body {
 }
 
 .centerText{text-align:center;}
+.clear{clear:both;}
 
 .listItem{
   margin: .5em;
-  padding: .3em 0;
+  padding: .3em .5em .3em 0;
   border-radius: 4px;
   height: 40px;
 }

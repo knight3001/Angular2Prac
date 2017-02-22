@@ -1,18 +1,20 @@
-import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
-import { AppComponent }         from './app.component';
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CoursesModule }         from './courses/courses.module';
+import { CoursesModule } from './courses/courses.module';
 
-import { DialogService }        from './dialog.service';
-import { AuthGuard }            from './auth-guard.service';
+import { DialogService } from './dialog.service';
+import { AuthGuard } from './auth-guard.service';
 
-import { LoginRoutingModule }   from './login-routing.module';
-import { LoginComponent }       from './login.component';
+import { LoginRoutingModule } from './login-routing.module';
+import { LoginComponent } from './login.component';
+
+import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   imports: [
@@ -20,7 +22,8 @@ import { LoginComponent }       from './login.component';
     FormsModule,
     AppRoutingModule,
     CoursesModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    CustomFormsModule
   ],
   declarations: [
     AppComponent,
@@ -31,7 +34,7 @@ import { LoginComponent }       from './login.component';
     AuthGuard,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
