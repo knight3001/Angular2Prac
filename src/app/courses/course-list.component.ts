@@ -1,41 +1,41 @@
 import 'rxjs/add/operator/switchMap';
 
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params }            from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 
-import { HeroService, Hero }         from './hero.service';
+import { CourseService, Course } from './course.service';
 
 @Component({
    moduleId: module.id,
-   selector: 'my-heroes',
-   templateUrl: 'hero-list.component.html',
+   selector: 'app-courses',
+   templateUrl: 'course-list.component.html',
    styleUrls: []
 })
-export class HeroListComponent implements OnInit {
-  heroes: Observable<Hero[]>;
+export class CourseListComponent implements OnInit {
+  courses: Observable<Course[]>;
   private selectedId: number;
 
   constructor(
-    private service: HeroService,
+    private service: CourseService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-     this.heroes = this.route.params
+     this.courses = this.route.params
       .switchMap((params: Params) => {
         this.selectedId = +params['id'];
-        return this.service.getHeroes();
+        return this.service.getCourses();
       });
   }
 
-  isSelected(hero: Hero) { return hero.id === this.selectedId; }
+  isSelected(course: Course) { return course.id === this.selectedId; }
 
 
-  onSelect(hero: Hero): void {
-    this.router.navigate(['/hero', hero.id]);
+  onSelect(course: Course): void {
+    this.router.navigate(['/course', course.id]);
   }
 
 }

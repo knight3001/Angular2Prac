@@ -3,14 +3,14 @@ import { Component, OnInit, HostBinding,
          trigger, transition, animate,
          style, state } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Location }               from '@angular/common';
+import { Location } from '@angular/common';
 
-import { HeroService, Hero } from './hero.service';
+import { CourseService, Course } from './course.service';
 
 @Component({
    moduleId: module.id,
-   selector: 'my-hero',
-   templateUrl: 'hero-detail.component.html',
+   selector: 'app-course',
+   templateUrl: 'course-detail.component.html',
    styles: [],
    animations: [
     trigger('routeAnimation', [
@@ -36,7 +36,7 @@ import { HeroService, Hero } from './hero.service';
     ])
   ]
 })
-export class HeroDetailComponent implements OnInit {
+export class CourseDetailComponent implements OnInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -49,11 +49,11 @@ export class HeroDetailComponent implements OnInit {
     return 'relative';
   }
 
-  hero: Hero;
+  course: Course;
   private admin: string;
 
   constructor(
-    private heroService: HeroService,
+    private courseService: CourseService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -62,18 +62,18 @@ export class HeroDetailComponent implements OnInit {
     this.route.params
         .switchMap((params: Params) => {
             this.admin = params['admin'];
-            return this.heroService.getHero(+params['id']);
+            return this.courseService.getCourse(+params['id']);
         })
-      .subscribe((hero: Hero) => this.hero = hero);
+      .subscribe((course: Course) => this.course = course);
   }
 
-  gotoHeroes(): void {
-      let heroId = this.hero ? this.hero.id : null;
+  gotoCourses(): void {
+      let courseId = this.course ? this.course.id : null;
       if (this.admin === 'admin') {
-          this.router.navigate(['/admin/heroes', { id: heroId }]);
+          this.router.navigate(['/admin/courses', { id: courseId }]);
       }
       else{
-          this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
+          this.router.navigate(['/courses', { id: courseId, foo: 'foo' }]);
       }
   }
 }

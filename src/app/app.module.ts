@@ -6,7 +6,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppComponent }         from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HeroesModule }         from './heroes/heroes.module';
+import { CoursesModule }         from './courses/courses.module';
 
 import { DialogService }        from './dialog.service';
 import { AuthGuard }            from './auth-guard.service';
@@ -19,7 +19,7 @@ import { LoginComponent }       from './login.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HeroesModule,
+    CoursesModule,
     LoginRoutingModule
   ],
   declarations: [

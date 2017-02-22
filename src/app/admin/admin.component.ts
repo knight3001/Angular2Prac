@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
         <li><a routerLink="./"
             [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">Dashboard</a></li>
         <li><a routerLink="./crises" routerLinkActive="active">Manage Crises</a></li>
-        <li><a routerLink="./heroes" routerLinkActive="active">Manage Heroes</a></li>
+        <li><a routerLink="./courses" routerLinkActive="active">Manage Courses</a></li>
       </ul>
       
     </nav>
