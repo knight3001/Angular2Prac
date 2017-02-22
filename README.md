@@ -28,7 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 1. extension: angular2 typescript snippets:johnpapa
-2. npm install -g typescript@2.0
+2. npm install -g typescript@2.1.6
 	Go to: C:\Program Files (x86)\Microsoft SDKs\TypeScript, there you see directories of type 0.9, 1.0 1.1.
 	Enter the high number that you have (in this case 1.1)
 	Copy the directory and run in CMD the command tsc -v, you get the version.
@@ -43,7 +43,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 5. CTRL + SHIFT + B (build)
 
-6. npm install -g @angular/cli
+6. npm install -g @angular/cli   (supported Node JS version: > 6.9.0)
    ng new my-app
    ng serve
    http://localhost:4200/
