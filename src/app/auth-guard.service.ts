@@ -1,4 +1,4 @@
-import { Injectable }     from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   CanActivate, Router,
   ActivatedRouteSnapshot,
@@ -6,13 +6,13 @@ import {
   CanActivateChild,
   NavigationExtras,
   CanLoad, Route
-}                           from '@angular/router';
+} from '@angular/router';
 
-import { AuthService }      from './auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate, CanActivateChild, CanLoad  {
-  constructor(private authService: AuthService, private router: Router) {}
+export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     let url: string = state.url;
@@ -47,7 +47,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad  {
     };
 
     // Navigate to the login page with extras
-    this.router.navigate(['/login'],navigationExtras);
+    this.router.navigate(['/login'], navigationExtras);
     return false;
   }
 }

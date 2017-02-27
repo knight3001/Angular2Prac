@@ -5,20 +5,35 @@ import {
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Crisis } from './crisis.service';
+import { Student } from './student.service';
 import { DialogService } from '../dialog.service';
 
 @Component({
   template: `
-  <div class="form-horizontal" *ngIf="crisis">
+  <div class="form-horizontal" *ngIf="student">
     <h3 class="centerText">{{ editName }}</h3>
     <div class="form-group">
       <label class="col-sm-2 control-label">Id:</label>
-      <div class="col-sm-10"><p class="form-control-static">{{ crisis.id }}</p></div>
+      <div class="col-sm-10"><p class="form-control-static">{{ student.id }}</p></div>
     </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">Name:</label>
-      <div class="col-sm-10"><input [(ngModel)]="editName" placeholder="name" class="form-control" /></div>
+      <div class="col-sm-10">
+          <input [(ngModel)]="editName" placeholder="name" name="name" class="form-control"
+          #name="ngModel" required minlength="4" maxlength="24" />
+          <div *ngIf="name.errors && (name.dirty || name.touched)"
+              class="alert alert-danger">
+              <div [hidden]="!name.errors.required">
+                Name is required
+              </div>
+              <div [hidden]="!name.errors.minlength">
+                Name must be at least 4 characters long.
+              </div>
+              <div [hidden]="!name.errors.maxlength">
+                Name cannot be more than 24 characters long.
+              </div>
+          </div>
+       </div>
     </div>
     <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
@@ -53,7 +68,7 @@ import { DialogService } from '../dialog.service';
     ])
   ]
 })
-export class CrisisDetailComponent implements OnInit {
+export class StudentDetailComponent implements OnInit {
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
   }
@@ -66,7 +81,7 @@ export class CrisisDetailComponent implements OnInit {
     return 'relative';
   }
 
-  crisis: Crisis;
+  student: Student;
   editName: string;
 
   constructor(
@@ -76,25 +91,26 @@ export class CrisisDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.route.data)
     this.route.data
-      .subscribe((data: { crisis: Crisis }) => {
-        this.editName = data.crisis.name;
-        this.crisis = data.crisis;
+      .subscribe((data: { student: Student }) => {
+        this.editName = data.student.name;
+        this.student = data.student;
       });
   }
 
   cancel() {
-    this.gotoCrises();
+    this.gotoStudents();
   }
 
   save() {
-    this.crisis.name = this.editName;
-    this.gotoCrises();
+    this.student.name = this.editName;
+    this.gotoStudents();
   }
 
   canDeactivate(): Promise<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
-    if (!this.crisis || this.crisis.name === this.editName) {
+    if (!this.student || this.student.name === this.editName) {
       return true;
     }
     // Otherwise ask the user with the dialog service and return its
@@ -103,13 +119,13 @@ export class CrisisDetailComponent implements OnInit {
   }
 
 
-  gotoCrises() {
-    let crisisId = this.crisis ? this.crisis.id : null;
+  gotoStudents() {
+    let studentId = this.student ? this.student.id : null;
     // Pass along the crisis id if available
     // so that the CrisisListComponent can select that crisis.
     // Add a totally useless `foo` parameter for kicks.
     // Relative navigation back to the crises
-    this.router.navigate(['../', { id: crisisId, foo: 'foo' }], { relativeTo: this.route });
+    this.router.navigate(['../', { id: studentId, foo: 'foo' }], { relativeTo: this.route });
   }
 }
 

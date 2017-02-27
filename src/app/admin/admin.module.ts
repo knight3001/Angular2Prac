@@ -1,10 +1,10 @@
-import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
-import { AdminComponent }           from './admin.component';
-import { AdminDashboardComponent }  from './admin-dashboard.component';
-import { ManageCrisesComponent }    from './manage-crises.component';
-import { ManageCoursesComponent }    from './manage-courses.component';
-import { AdminRoutingModule }       from './admin-routing.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AdminComponent } from './admin.component';
+import { AdminDashboardComponent } from './admin-dashboard.component';
+import { ManageStudentsComponent } from './manage-students.component';
+import { ManageCoursesComponent } from './manage-courses.component';
+import { AdminRoutingModule } from './admin-routing.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -13,8 +13,8 @@ import { AdminRoutingModule }       from './admin-routing.module';
   declarations: [
     AdminComponent,
     AdminDashboardComponent,
-    ManageCrisesComponent,
+    ManageStudentsComponent,
     ManageCoursesComponent
   ]
 })
-export class AdminModule {}
+export class AdminModule { }

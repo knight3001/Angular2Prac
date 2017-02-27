@@ -17,8 +17,8 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'crisis-center',
-    loadChildren: 'app/crisis-center/crisis-center.module#CrisisCenterModule',
+    path: 'students',
+    loadChildren: 'app/students/student-center.module#StudentCenterModule',
     data: {
       preload: true
     }

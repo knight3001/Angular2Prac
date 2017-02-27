@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
       <div class='panel-body'>
         <div class='col-md-4 col-md-offset-4'>
           <ul class="nav nav-pills">
-            <li role="presentation" routerLinkActive="active"><a routerLink="/crisis-center">Crisis Center</a></li>
+            <li role="presentation" routerLinkActive="active"><a routerLink="/students">Student Center</a></li>
             <li role="presentation" routerLinkActive="active"><a routerLink="/courses">Courses</a></li>
             <li role="presentation" routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
             <li role="presentation" routerLinkActive="active"><a routerLink="/login">Login</a></li>

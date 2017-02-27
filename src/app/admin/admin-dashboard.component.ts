@@ -1,12 +1,12 @@
-import { Component, OnInit }  from '@angular/core';
-import { ActivatedRoute }     from '@angular/router';
-import { Observable }         from 'rxjs/Observable';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { PreloadSelectedModules } from '../selective-preload-strategy';
 
 import 'rxjs/add/operator/map';
 
 @Component({
-  template:  `
+  template: `
     <h3>Dashboard Information</h3>
     <table class="table table-striped">
       <tr>
@@ -34,10 +34,10 @@ export class AdminDashboardComponent implements OnInit {
   modules: string[];
 
   constructor(
-      private route: ActivatedRoute,
-      private preloadStrategy: PreloadSelectedModules
+    private route: ActivatedRoute,
+    private preloadStrategy: PreloadSelectedModules
   ) {
-      this.modules = preloadStrategy.preloadedModules;
+    this.modules = preloadStrategy.preloadedModules;
   }
 
   ngOnInit() {
