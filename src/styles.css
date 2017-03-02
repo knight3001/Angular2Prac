@@ -1,4 +1,5 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../src/css/bootstrap.icon-extra.min.css";
 
 /* Master Styles */
 body {

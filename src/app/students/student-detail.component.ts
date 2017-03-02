@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { Student } from './student.service';
 import { DialogService } from '../dialog.service';
+import { DateFormatString } from '../globals';
 
 @Component({
   template: `
@@ -16,6 +17,7 @@ import { DialogService } from '../dialog.service';
       <label class="col-sm-2 control-label">Id:</label>
       <div class="col-sm-10"><p class="form-control-static">{{ student.id }}</p></div>
     </div>
+
     <div class="form-group">
       <label class="col-sm-2 control-label">Name:</label>
       <div class="col-sm-10">
@@ -35,12 +37,44 @@ import { DialogService } from '../dialog.service';
           </div>
        </div>
     </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Gender:</label>
+      <div class="col-sm-10">
+            <button type="button" [ngClass]="(selectGender === 2 ? 'btn btn-success' : 'btn btn-default')" (click)="GenderSelect(2)">
+              <span class="icon-extra icon-boy" aria-hidden="true"></span> Male
+            </button>
+            <button type="button" [ngClass]="(selectGender === 1 ? 'btn btn-success' : 'btn btn-default')" (click)="GenderSelect(1)">
+              <span class="icon-extra icon-girl" aria-hidden="true"></span> Female
+            </button>
+            <div *ngIf="selectGender === 0 && this.student"
+              class="alert alert-danger">
+              <div>Gender is required</div>
+          </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">D.O.B:</label>
+      <div class="col-sm-4">
+          <input [(ngModel)]="stringDOB" type="date" placeholder="Date of Birth" name="dob" class="form-control"
+          #dob="ngModel" required useValueAsDate />
+          <div *ngIf="dob.errors && (dob.dirty || dob.touched)"
+              class="alert alert-danger">
+              <div [hidden]="!dob.errors.required">
+                D.O.B is required
+              </div>
+          </div>
+       </div>
+    </div>
+
     <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
         <button (click)="save()" type="button" class="btn btn-primary">Save</button>
         <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
       </div>
     </div>
+
   </div>
   `,
   styles: [],
@@ -83,6 +117,8 @@ export class StudentDetailComponent implements OnInit {
 
   student: Student;
   editName: string;
+  selectGender: number;
+  editDOB: Date;
 
   constructor(
     private route: ActivatedRoute,
@@ -91,12 +127,25 @@ export class StudentDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.route.data)
     this.route.data
       .subscribe((data: { student: Student }) => {
         this.editName = data.student.name;
+        this.selectGender = data.student.gender;
+        this.editDOB = data.student.dob;
         this.student = data.student;
       });
+  }
+
+  set stringDOB(e){
+    const el = e.split('-');
+    const d = new Date(Date.UTC(parseInt(el[0], 10), parseInt(el[1], 10) - 1, parseInt(el[2], 10)));
+    this.editDOB.setFullYear(d.getFullYear(), d.getMonth(), d.getDate());
+  }
+
+  get stringDOB(){
+    if (!isNaN(this.editDOB.getTime())) {
+      return this.editDOB.toISOString().substring(0, 10);
+    }
   }
 
   cancel() {
@@ -105,12 +154,24 @@ export class StudentDetailComponent implements OnInit {
 
   save() {
     this.student.name = this.editName;
+    this.student.gender = this.selectGender;
+    this.student.dob = this.editDOB;
     this.gotoStudents();
+  }
+
+  GenderSelect(Gender: number) {
+    if (this.selectGender === Gender) {
+      this.selectGender = 0;
+    }
+    else {
+      this.selectGender = Gender;
+    }
   }
 
   canDeactivate(): Promise<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
-    if (!this.student || this.student.name === this.editName) {
+    if (!this.student || (this.student.name === this.editName && this.student.gender === this.selectGender
+      && this.editDOB.getTime() === this.student.dob.getTime())) {
       return true;
     }
     // Otherwise ask the user with the dialog service and return its

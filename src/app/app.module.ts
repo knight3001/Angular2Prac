@@ -15,6 +15,7 @@ import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
 
 import { CustomFormsModule } from 'ng2-validation';
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { CustomFormsModule } from 'ng2-validation';
     AppRoutingModule,
     CoursesModule,
     LoginRoutingModule,
-    CustomFormsModule
+    CustomFormsModule,
+    DateValueAccessorModule
   ],
   declarations: [
     AppComponent,
