@@ -11,7 +11,7 @@ import { DateFormatString } from '../globals';
 
 @Component({
   template: `
-  <div class="form-horizontal" *ngIf="student">
+  <form class="form-horizontal" *ngIf="student" (ngSubmit)="save()" #studentForm="ngForm">
     <h3 class="centerText">{{ editName }}</h3>
     <div class="form-group">
       <label class="col-sm-2 control-label">Id:</label>
@@ -57,8 +57,8 @@ import { DateFormatString } from '../globals';
     <div class="form-group">
       <label class="col-sm-2 control-label">D.O.B:</label>
       <div class="col-sm-4">
-          <input [(ngModel)]="stringDOB" type="date" placeholder="Date of Birth" name="dob" class="form-control"
-          #dob="ngModel" required useValueAsDate />
+          <input [(ngModel)]="editDOB" type="date" placeholder="Date of Birth" name="dob" class="form-control"
+          #dob="ngModel" required />
           <div *ngIf="dob.errors && (dob.dirty || dob.touched)"
               class="alert alert-danger">
               <div [hidden]="!dob.errors.required">
@@ -70,12 +70,13 @@ import { DateFormatString } from '../globals';
 
     <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
-        <button (click)="save()" type="button" class="btn btn-primary">Save</button>
+        <button (click)="save()" type="button" [disabled]="!studentForm.form.valid || 
+                 selectGender === 0" class="btn btn-primary">Save</button>
         <button (click)="cancel()" type="button" class="btn btn-default">Cancel</button>
       </div>
     </div>
 
-  </div>
+  </form>
   `,
   styles: [],
   animations: [
@@ -118,7 +119,7 @@ export class StudentDetailComponent implements OnInit {
   student: Student;
   editName: string;
   selectGender: number;
-  editDOB: Date;
+  editDOB: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -131,21 +132,9 @@ export class StudentDetailComponent implements OnInit {
       .subscribe((data: { student: Student }) => {
         this.editName = data.student.name;
         this.selectGender = data.student.gender;
-        this.editDOB = data.student.dob;
+        this.editDOB = DateFormatString(data.student.dob);
         this.student = data.student;
       });
-  }
-
-  set stringDOB(e){
-    const el = e.split('-');
-    const d = new Date(Date.UTC(parseInt(el[0], 10), parseInt(el[1], 10) - 1, parseInt(el[2], 10)));
-    this.editDOB.setFullYear(d.getFullYear(), d.getMonth(), d.getDate());
-  }
-
-  get stringDOB(){
-    if (!isNaN(this.editDOB.getTime())) {
-      return this.editDOB.toISOString().substring(0, 10);
-    }
   }
 
   cancel() {
@@ -155,7 +144,7 @@ export class StudentDetailComponent implements OnInit {
   save() {
     this.student.name = this.editName;
     this.student.gender = this.selectGender;
-    this.student.dob = this.editDOB;
+    this.student.dob = new Date(this.editDOB);
     this.gotoStudents();
   }
 
@@ -171,7 +160,7 @@ export class StudentDetailComponent implements OnInit {
   canDeactivate(): Promise<boolean> | boolean {
     // Allow synchronous navigation (`true`) if no crisis or the crisis is unchanged
     if (!this.student || (this.student.name === this.editName && this.student.gender === this.selectGender
-      && this.editDOB.getTime() === this.student.dob.getTime())) {
+      && new Date(this.editDOB).getTime() === this.student.dob.getTime())) {
       return true;
     }
     // Otherwise ask the user with the dialog service and return its

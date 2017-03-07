@@ -31,7 +31,7 @@ import { User, UserService } from './users.service';
       <div class="form-group" *ngIf="!authService.isLoggedIn">
         <label class="col-sm-2 control-label">Password:</label>
         <div class="col-sm-10">
-            <input [(ngModel)]="user.password" placeholder="admin" name="password" class="form-control"
+            <input [(ngModel)]="user.password" type="Password" placeholder="admin" name="password" class="form-control"
             #password="ngModel" required />
             <div *ngIf="password.errors && (password.dirty || password.touched)"
                 class="alert alert-danger">
