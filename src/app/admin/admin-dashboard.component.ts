@@ -10,12 +10,12 @@ import 'rxjs/add/operator/map';
     <h3>Dashboard Information</h3>
     <table class="table table-striped">
       <tr>
-        <th>Session ID:</th>
-        <td>{{ sessionId | async }}</td>
+        <th>User ID:</th>
+        <td>{{ sessionId }}</td>
       </tr>
       <tr>
-        <th>Token:</th>
-        <td>{{ token | async }}</td>
+        <th>Username:</th>
+        <td>{{ token }}</td>
       </tr>
       <tr>
         <th>Preloaded Modules:</th>
@@ -29,8 +29,8 @@ import 'rxjs/add/operator/map';
   `
 })
 export class AdminDashboardComponent implements OnInit {
-  sessionId: Observable<string>;
-  token: Observable<string>;
+  sessionId: string;
+  token: string;
   modules: string[];
 
   constructor(
@@ -42,14 +42,16 @@ export class AdminDashboardComponent implements OnInit {
 
   ngOnInit() {
     // Capture the session ID if available
-    this.sessionId = this.route
-      .queryParams
-      .map(params => params['session_id'] || 'None');
+    this.sessionId = localStorage.getItem('userid');
+    // this.sessionId = this.route
+    //  .queryParams
+    //  .map(params => params['session_id'] || 'None');
 
     // Capture the fragment if available
-    this.token = this.route
-      .fragment
-      .map(fragment => fragment || 'None');
+    this.token = localStorage.getItem('username');
+    // this.token = this.route
+    //  .fragment
+    //  .map(fragment => fragment || 'None');
   }
 }
 

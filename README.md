@@ -54,4 +54,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
   "deploy": "ngh"
   run: npm run deploy
 
+8. Angury -- Chrome debugger extension  
+
 

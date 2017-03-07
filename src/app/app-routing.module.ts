@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
 
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
-import { AuthGuard } from './auth-guard.service';
-import { PreloadSelectedModules } from './selective-preload-strategy'
+import { AuthGuard } from './users/auth-guard.service';
+import { PreloadSelectedModules } from './selective-preload-strategy';
 
 const appRoutes: Routes = [
    {

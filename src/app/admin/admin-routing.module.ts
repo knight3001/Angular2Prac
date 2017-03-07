@@ -6,7 +6,7 @@ import { ManageStudentsComponent } from './manage-students.component';
 import { ManageCoursesComponent } from './manage-courses.component';
 import { AdminDashboardComponent } from './admin-dashboard.component';
 
-import { AuthGuard } from '../auth-guard.service';
+import { AuthGuard } from '../users/auth-guard.service';
 
 const adminRoutes: Routes = [
   {

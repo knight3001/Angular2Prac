@@ -9,10 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoursesModule } from './courses/courses.module';
 
 import { DialogService } from './dialog.service';
-import { AuthGuard } from './auth-guard.service';
+import { AuthGuard } from './users/auth-guard.service';
+import { UserService } from './users/users.service';
 
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginComponent } from './login.component';
+import { LoginRoutingModule } from './users/login-routing.module';
+import { LoginComponent } from './users/login.component';
 
 import { CustomFormsModule } from 'ng2-validation';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
@@ -34,6 +35,7 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
   providers: [
     DialogService,
     AuthGuard,
+    UserService,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
