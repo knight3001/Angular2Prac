@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CoursesModule } from './courses/courses.module';
+import { TeachersModule } from './teachers/teachers.module';
 
 import { DialogService } from './dialog.service';
 import { AuthGuard } from './users/auth-guard.service';
@@ -26,7 +27,8 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
     CoursesModule,
     LoginRoutingModule,
     CustomFormsModule,
-    DateValueAccessorModule
+    DateValueAccessorModule,
+    TeachersModule
   ],
   declarations: [
     AppComponent,

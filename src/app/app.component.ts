@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
           <ul class="nav nav-pills">
             <li role="presentation" routerLinkActive="active"><a routerLink="/students">Student Center</a></li>
             <li role="presentation" routerLinkActive="active"><a routerLink="/courses">Courses</a></li>
+            <li role="presentation" routerLinkActive="active"><a routerLink="/teachers">Teachers</a></li>
             <li role="presentation" routerLinkActive="active"><a routerLink="/admin">Admin</a></li>
             <li role="presentation" routerLinkActive="active"><a routerLink="/login">Login</a></li>
           </ul>

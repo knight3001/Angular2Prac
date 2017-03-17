@@ -22,6 +22,10 @@ const appRoutes: Routes = [
     data: {
       preload: true
     }
+  },
+  {
+    path: 'teachers',
+    loadChildren: 'app/teachers/teachers.module#TeachersModule'
   }
 ];
 
