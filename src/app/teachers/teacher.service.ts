@@ -7,7 +7,7 @@ export class Teacher {
 
   get description() {
     return `graduated from ` + `${this.university.name}\n` +
-           `with a ${this.degree.title} degree\n` +
+           `with a ${this.degree.title} position\n` +
            `paid with $${this.degree.salary} per year.`;
   }
 }
@@ -43,6 +43,28 @@ export class UniversityService2 {
 export class DegreeService {
   id = 'D1';
   getDegree() { return new Degree(); }
+}
+
+@Injectable()
+export class DegreeService2 {
+  id = 'D2';
+  getDegree() {
+      const degree = new Degree();
+      degree.title = 'Dean';
+      degree.salary = 168000;
+      return degree;
+  }
+}
+
+@Injectable()
+export class DegreeService3 {
+  id = 'D3';
+  getDegree() {
+      const degree = new Degree();
+      degree.title = 'Lecturer';
+      degree.salary = 68000;
+      return degree;
+  }
 }
 
 /// Car Services ///

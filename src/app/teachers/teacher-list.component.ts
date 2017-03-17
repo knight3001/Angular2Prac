@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 import {
   TeacherService, TeacherService2, TeacherService3,
-  UniversityService, UniversityService2, DegreeService
+  UniversityService, UniversityService2,
+  DegreeService, DegreeService2, DegreeService3
 } from './teacher.service';
 
 ////////// CTeacherComponent ////////////
@@ -10,7 +11,8 @@ import {
   selector: 'c-teacher',
   template: `<li><span class="flashRow">{{name}}</span><br />{{description}}</li>`,
   providers: [
-    { provide: TeacherService, useClass: TeacherService3 }
+    { provide: TeacherService, useClass: TeacherService3 },
+    { provide: DegreeService, useClass: DegreeService3 }
   ]
 })
 export class CTeacherComponent {
@@ -31,7 +33,8 @@ export class CTeacherComponent {
   `,
   providers: [
     { provide: TeacherService,    useClass: TeacherService2 },
-    { provide: UniversityService, useClass: UniversityService2 }
+    { provide: UniversityService, useClass: UniversityService2 },
+    { provide: DegreeService, useClass: DegreeService2 }
   ]
 })
 export class BTeacherComponent {
