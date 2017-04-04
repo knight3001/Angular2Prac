@@ -7,7 +7,6 @@ import { CourseDetailComponent } from './course-detail.component';
 
 import { CourseService } from './course.service';
 import { StudentService } from '../students/student.service';
-
 import { CourseRoutingModule } from './course-routing.module';
 
 import { ForbiddenValidatorDirective } from '../forbidden-name.directive';

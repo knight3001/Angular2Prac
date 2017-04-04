@@ -14,6 +14,7 @@ import { CourseService, Course } from './course.service';
    styleUrls: []
 })
 export class CourseListComponent implements OnInit {
+  errorMessage: string;
   courses: Observable<Course[]>;
   private selectedId: number;
 

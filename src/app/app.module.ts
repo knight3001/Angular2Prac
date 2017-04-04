@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +20,9 @@ import { LoginComponent } from './users/login.component';
 import { CustomFormsModule } from 'ng2-validation';
 import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { CourseData } from './courses/course-data';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { DateValueAccessorModule } from 'angular-date-value-accessor';
     LoginRoutingModule,
     CustomFormsModule,
     DateValueAccessorModule,
-    TeachersModule
+    TeachersModule,
+    HttpModule,
+    InMemoryWebApiModule.forRoot(CourseData)
   ],
   declarations: [
     AppComponent,
